@@ -14,8 +14,6 @@ This project is a Go application designed to manage Amazon ECR (Elastic Containe
 ```
 
 ### flags
-- days: The `days` flag 
-
 | flag | usage |
 | ---- |---- |
 | days | allows users to specify a number of days to compare against the lastPulledTime of each image. By default, this value is set to 365 days, meaning the application will identify and process images that have not been pulled within the past year.|
