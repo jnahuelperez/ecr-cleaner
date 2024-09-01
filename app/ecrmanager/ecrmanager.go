@@ -1,6 +1,7 @@
 package ecrmanager
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/service/ecr"
@@ -24,15 +25,15 @@ func IsImageUsedByPods(imageID string, pods []v1.Pod) bool {
 	return false
 }
 
-// Function to delete the image (commented out)
+// Function to delete the image
 func DeleteImage(ecrSvc *ecr.ECR, repoName *string, imageID *ecr.ImageIdentifier) {
 	// Delete the image
-	// _, err := ecrSvc.BatchDeleteImage(&ecr.BatchDeleteImageInput{
-	// 	RepositoryName: repoName,
-	// 	ImageIds:       []*ecr.ImageIdentifier{imageID},
-	// })
-	// if err != nil {
-	// 	fmt.Printf("Failed to delete image: %v", err)
-	// }
-	// fmt.Printf("The image %s would be deleted\n", *imageID.ImageDigest)
+	_, err := ecrSvc.BatchDeleteImage(&ecr.BatchDeleteImageInput{
+		RepositoryName: repoName,
+		ImageIds:       []*ecr.ImageIdentifier{imageID},
+	})
+	if err != nil {
+		fmt.Printf("Failed to delete image: %v", err)
+	}
+	fmt.Printf("The image %s would be deleted\n", *imageID.ImageDigest)
 }
