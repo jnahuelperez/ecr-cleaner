@@ -10,7 +10,14 @@ This project is a Go application designed to manage Amazon ECR (Elastic Containe
 
 ## Usage
 ```
-./ecr-cleaner
+./ecr-cleaner -h
+Usage of ./ecr-cleaner:
+  -days int
+        Number of days to evaluate against lastPulledTime. (default 365)
+  -mode string
+        Mode of operation: 'ecr' for ECR cleanup, 'k8s' for Kubernetes pod checking. (default "ecr")
+  -region string
+        AWS region where the ECR is running. (default "us-east-1")
 ```
 
 ### flags
